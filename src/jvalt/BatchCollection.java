@@ -3,17 +3,17 @@ import java.lang.*;
 import java.io.*;
 import java.util.*;
 
-public abstract class Batches {
+public abstract class BatchCollection {
 
 	private Collection<Object> batch;
 	
-	public Batches()
+	public BatchCollection()
 	{ batch = new ArrayList<Object>(); }
-	public Batches(Collection<Object> batch)
+	public BatchCollection(Collection<Object> batch)
 	{ this.batch = batch; }
 	
-	public Batches getBatch() {
-		Batches batch = new Batch(this.batch);
+	public BatchCollection getBatch() {
+		BatchCollection batch = new Batch(this.batch);
 		return batch;
 	}
 	
@@ -21,7 +21,7 @@ public abstract class Batches {
 		return batch;
 	}
 	
-	public void setBatch(Batches b) {
+	public void setBatch(BatchCollection b) {
 		batch = b.toCollection();
 	}
 	
@@ -112,7 +112,7 @@ public abstract class Batches {
 		return string + this.get(this.size() - 1).toString() +"}";
 	}
 
-	public Batches subBatch(int from, int to) {
+	public BatchCollection subBatch(int from, int to) {
 		Batch newBatch = new Batch();
 		for (int i = 0; i < this.size(); i++) {
 			newBatch.add(this.get(i));
