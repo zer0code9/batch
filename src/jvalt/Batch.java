@@ -1,7 +1,7 @@
 package jvalt;
 import java.util.*;
 
-public class Batch extends Batches {
+public class Batch extends BatchCollection {
 
 	public Batch()
 	{ super(); }
@@ -14,6 +14,7 @@ public class Batch extends Batches {
 		super.getBatchAsCollection().add(o);
 		return true;
 	}
+	// Add Object at index
 	public void add(int i, Object o) {
 		Batch newBatch = new Batch();
 		for (int z = 0; z < i - 1; z++)
@@ -29,6 +30,7 @@ public class Batch extends Batches {
 			this.add(object);
 		return true;
 	}
+	// Add Collection at index
 	public void add(int i, Collection<Object> c) {
 		Batch newBatch = new Batch();
 		for (int z = 0; z < i - 1; z++)
@@ -45,6 +47,7 @@ public class Batch extends Batches {
 			this.add(object);
 		return true;
 	}
+	// Add Array at index
 	public void add(int i, Object[] a) {
 		Batch newBatch = new Batch();
 		for (int z = 0; z < i - 1; z++)
@@ -57,6 +60,7 @@ public class Batch extends Batches {
 	}
 	
 	// REMOVE
+	// Remove at index
 	public Object remove(int i) {
 		Batch newBatch = new Batch();
 		for (int z = 0; z < i; z++)
@@ -68,13 +72,24 @@ public class Batch extends Batches {
 		System.out.print(o);
 		return o;
 	}
-
+	// Remove Object
 	public int remove(Object o) {
 		int i = this.indexOf(o);
 		this.remove(i);
 		return i;
 	}
-	
+	// Remove at indices as Collection
+	public Collection<Object> remove(Collection<Integer> indices) {
+		Object[] a = new Object[indices.size()];
+		int index = 0;
+		for (int i : indices) {
+			Object o = this.remove(i);
+			a[index] = o;
+			index++;
+		}
+		return a;
+	}
+	// Remove as Collection
 	public int[] remove(Collection<Object> c) {
 		int[] indices = new int[c.size()];
 		int index = 0;
@@ -85,18 +100,7 @@ public class Batch extends Batches {
 		}
 		return indices;
 	}
-	
-	public int[] remove(Object[] a) {
-		int[] indices = new int[a.length];
-		int index = 0;
-		for (Object object : a) {
-			int i = this.remove(object);
-			indices[index] = i;
-			index++;
-		}
-		return indices;
-	}
-	
+	// Remove at indices as Array
 	public Object[] remove(int[] indices) {
 		Object[] a = new Object[indices.length];
 		int index = 0;
@@ -106,6 +110,17 @@ public class Batch extends Batches {
 			index++;
 		}
 		return a;
+	}
+	// Remove as Array
+	public int[] remove(Object[] a) {
+		int[] indices = new int[a.length];
+		int index = 0;
+		for (Object object : a) {
+			int i = this.remove(object);
+			indices[index] = i;
+			index++;
+		}
+		return indices;
 	}
 
 	// RESTAIN
